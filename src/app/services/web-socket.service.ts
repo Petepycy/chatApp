@@ -8,7 +8,8 @@ export class WebSocketService {
 
   webSocket!: WebSocket;
   chatMessages: ChatMessageDto[] = [];
-  constructor() { }
+  constructor() {
+  }
 
   public openWebSocket() {
     this.webSocket = new WebSocket('ws://localhost:8080/chat');
@@ -19,6 +20,7 @@ export class WebSocketService {
 
     this.webSocket.onmessage = (event) => {
       const chatMessageDto = JSON.parse(event.data);
+      console.log(this.chatMessages);
       this.chatMessages.push(chatMessageDto);
     };
 
